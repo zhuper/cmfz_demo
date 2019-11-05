@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    type: org.apache.commons.dbcp.BasicDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cmfz
+    username: root
+    password: root
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 100MB      #一次传文件的大小
+      max-request-size: 100MB   #批量上传文件的大小
+server:
+  port: 8989
+  servlet:
+    context-path: /star  #访问端口名
+    jsp:
+      init-parameters:
+        development: true
+mybatis:
+  mapper-locations: classpath:com/baizhi/mapper/UserDaoMapper.xml
+  type-aliases-package: com.baizhi.entity
