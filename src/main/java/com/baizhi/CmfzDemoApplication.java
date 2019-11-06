@@ -17,6 +17,7 @@ public class CmfzDemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(CmfzDemoApplication.class, args);
         System.out.println("hehehehehehe--");
+        System.out.println("????????");
 
     }
 
