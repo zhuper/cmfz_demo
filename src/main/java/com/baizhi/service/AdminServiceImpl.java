@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
@@ -16,7 +15,6 @@ import java.util.UUID;
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminDao adminDao;
-
     /**
      * 登陆方法
      */
