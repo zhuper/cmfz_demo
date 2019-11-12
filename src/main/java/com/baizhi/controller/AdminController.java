@@ -2,6 +2,11 @@ package com.baizhi.controller;
 
 import com.baizhi.entity.Admin;
 import com.baizhi.service.AdminService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,19 +27,30 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-
     @RequestMapping("login")
     @ResponseBody
-    public Map<String, Object> login(Admin admin, HttpServletRequest request, String inputCode) {
+    public Map<String, Object> login(Admin admin, HttpServletRequest request,String inputCode) {
         //创建一个集合
         Map<String, Object> map = new HashMap<>();
-        try {
-            adminService.login(request, admin, inputCode);
-            map.put("status", true);
-        } catch (Exception e) {
-            map.put("status", false);
-            //打印错误标记
-            map.put("message", e.getMessage());
+        //创建主体
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(admin.getUsername(),admin.getPassword());
+        String code1 = (String) request.getSession().getAttribute("securityCode");
+        if (code1.equalsIgnoreCase(inputCode)){
+            try {
+
+                subject.login(token);
+
+               //adminService.login(request, admin, inputCode);
+               // subject.login(admin,inputCode);
+                map.put("status", true);
+            } catch (Exception e) {
+                map.put("status", false);
+                //打印错误标记
+                map.put("message", e.getMessage());
+             }
+        }else{
+            throw new RuntimeException("hehe");
         }
         return map;
     }
@@ -44,15 +60,11 @@ public class AdminController {
      */
 
     @RequestMapping("exit")
-
-    public String exit(HttpServletRequest request) {
-        //销毁登录标记
-        request.getSession().removeAttribute("loginAdmin");
-        //注销
-        request.getSession().invalidate();
-        return "redirect:/login/login.jsp";
+    public String logout(){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "redirect:/admin/login.jsp";
     }
-
 
     @RequestMapping("registered")
     @ResponseBody
@@ -60,6 +72,7 @@ public class AdminController {
         Map<String, Object> map = new HashMap<>();
         try {
             adminService.registered(request, admin);
+
             map.put("status", true);
         } catch (Exception e) {
             map.put("status", false);

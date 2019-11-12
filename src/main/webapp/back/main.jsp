@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@page contentType="text/html; UTF-8" pageEncoding="utf-8" isELIgnored="false" %>
 <c:set value="${pageContext.request.contextPath}" var="app"/>
 <!doctype html>
@@ -49,13 +50,18 @@
         </div>
         <%-- 导航条中的内容 --%>
         <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">欢迎:<font color="aqua">${loginAdmin.username}</font></a></li>
+
+
+
+<ul class="nav navbar-nav navbar-right">
+                <li><a href="#">欢迎:<font color="aqua"><shiro:principal/></font></a></li>
                 <li><a href="${app}/admin/exit">安全退出 <span class="glyphicon glyphicon-log-out"></span> </a></li>
             </ul>
         </div>
     </div>
 </nav>
+<shiro:hasRole name="admin">
+
 <div class="panel panel-default">
     <%-- 页面内容 --%>
     <%-- 手风琴 --%>
@@ -111,6 +117,9 @@
                                 <ul class="list-group text-center">
                                     <li class="list-group-item"><a href="javascript:$('#centerLayout').load('${app}/article/article-show.jsp');" id="btn5">所有文章</a></li>
                                 </ul>
+                                <ul class="list-group text-center">
+                                    <li class="list-group-item"><a href="javascript:$('#centerLayout').load('${app}/article/article-gogo.jsp');">搜索文章</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -150,6 +159,20 @@
                             </div>
                         </div>
                     </div>
+                    </shiro:hasRole>
+
+                <%--权限管理--%>
+                    <shiro:hasRole name="super">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingSeven">
+                            <h4 class="panel-title text-center">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseOne">
+                                    管理员管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    </shiro:hasRole>
                 </div>
             </div>
             <%-- 中心布局 --%>

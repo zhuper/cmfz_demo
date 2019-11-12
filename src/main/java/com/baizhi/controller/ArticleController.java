@@ -34,7 +34,7 @@ public class ArticleController {
     @RequestMapping("findAll")
 
     public Map<String,Object> findAll(Integer page, Integer rows){
-        Map<String,Object>map = articleService.findAll(page,rows);
+        Map<String,Object>map = articleService.selectAll(page,rows);
         return map;
     }
 
@@ -129,7 +129,7 @@ public Map<String,Object>add(Article article){
     /***
      * 删除功能
      * @param article
-     * @param request
+     * @param
      * @return
      */
     @RequestMapping("delete")
@@ -146,4 +146,16 @@ public Map<String,Object>add(Article article){
     }
     return map;
     }
+
+    /**
+     *检索功能
+     */
+    @RequestMapping("search")
+    public List<Article> search(String content){
+        List<Article> list = articleService.search(content);
+        //System.out.println("11111111111111111111111111"+list);
+        return list;
+    }
+
+
 }

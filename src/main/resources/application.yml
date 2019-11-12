@@ -13,6 +13,9 @@ spring:
     multipart:
       max-file-size: 100MB      #一次传文件的大小
       max-request-size: 100MB   #批量上传文件的大小
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.189.159:9300
 server:
   port: 8989
   servlet:

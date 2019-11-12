@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" isELIgnored="false" %>
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +28,6 @@
                 $("#captchaImage").prop("src", "${pageContext.request.contextPath}/code/getCode?time=" + new Date().getTime());
             });
         });
-
         /*登录*/
         $(function () {
             $("#loginButtonId").click(function () {
@@ -58,8 +56,8 @@
     </script>
 </head>
 
-<body>
 
+<body>
 <!-- Top content -->
 <div class="top-content">
 
@@ -87,7 +85,7 @@
                         </div>
                     </div>
                     <div class="form-bottom" style="width: 450px">
-                        <form role="form" action="${pageContext.request.contextPath}/Admin/login" method="post"
+                        <form role="form" action="${pageContext.request.contextPath}/admin/login" method="post"
                               class="login-form" id="loginForm">
                             <span id="error-message"></span>
                             <span id="msgDiv"></span>
@@ -109,10 +107,6 @@
                             </div>
                             <input type="button" style="width: 400px;border:1px solid #9d9d9d;border-radius: 4px;"
                                    id="loginButtonId" value="登录">
-                            <div>
-                            <input type="button" class="text-center" style="width: 200px;border:1px solid #9d9d9d;border-radius: 2px;"
-                            value="注册">
-                            </div>
                         </form>
                     </div>
                 </div>

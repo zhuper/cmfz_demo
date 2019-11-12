@@ -1,5 +1,6 @@
 package com.baizhi.service;
 
+import com.baizhi.annotation.RedisCache;
 import com.baizhi.dao.BannerDao;
 import com.baizhi.entity.Banner;
 import org.apache.ibatis.session.RowBounds;
@@ -22,6 +23,7 @@ public class BannerServiceImpl implements BannerService {
     //查询
 
     @Override
+    @RedisCache
     public Map<String, Object> selectAll(Integer page, Integer rows) {
         Banner banner =new Banner();
         RowBounds rowbounds = new RowBounds((page-1)*rows,rows);

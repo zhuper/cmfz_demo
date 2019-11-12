@@ -3,12 +3,16 @@ package com.baizhi;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
+import redis.clients.jedis.Jedis;
 import tk.mybatis.spring.annotation.MapperScan;
+
+import javax.persistence.Basic;
 
 @SpringBootApplication
 @MapperScan("com.baizhi.dao")
@@ -16,8 +20,6 @@ public class CmfzDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CmfzDemoApplication.class, args);
-        System.out.println("hehehehehehe--");
-        System.out.println("????????");
 
     }
 
@@ -33,5 +35,19 @@ public class CmfzDemoApplication {
         HttpMessageConverter<?> converter = fasHttpMessageConverter;
         return new HttpMessageConverters(converter);
     }
+        //将jedis 交由Spring工厂管理
+
+    @Bean("jedis")
+    public Jedis getJedis(){
+        //redis服务的机器ip  端口号
+        return new Jedis("192.168.189.158",6379);
+    }
+
+/*
+
+    //将shiro交给功能管理
+        public ShiroFilterFactoryBean get
+*/
+
 
 }

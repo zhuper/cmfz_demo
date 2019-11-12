@@ -19,7 +19,7 @@ public class AdminServiceImpl implements AdminService {
      * 登陆方法
      */
 
-    @Override
+   /* @Override
     public void login(HttpServletRequest request, Admin admin,String inputCode) {
         //获得session
      HttpSession session= request.getSession();
@@ -37,7 +37,7 @@ public class AdminServiceImpl implements AdminService {
         }else {  //否则
             throw new RuntimeException("验证码错误");
         }
-    }
+    }*/
 
     /**
      * 注册功能
