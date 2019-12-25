@@ -46,7 +46,6 @@ public class ArticleController {
      */
     @RequestMapping("upload")
     public Map<String,Object> upload(MultipartFile articleImg, HttpServletRequest request){
-//        {"error":0,"url":"\/ke4\/attached\/W020091124524510014093.jpg"}
         Map<String, Object> map = new HashMap<>();
         File file = new File(request.getServletContext().getRealPath("article/img"), articleImg.getOriginalFilename());
         try {
@@ -153,9 +152,6 @@ public Map<String,Object>add(Article article){
     @RequestMapping("search")
     public List<Article> search(String content){
         List<Article> list = articleService.search(content);
-        //System.out.println("11111111111111111111111111"+list);
         return list;
     }
-
-
 }

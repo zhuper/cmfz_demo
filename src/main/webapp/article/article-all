@@ -5,11 +5,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>文章详情</title>
+    <script>
+        $(function () {
+            $("#article-search").click(function () {
+                $.ajax({
+                    url:"${app}/article/all",
+                    type:"post",
+                    datatype:"json",
+                    data:"content="+$("#article-input").val(),
+                    success:function (data) {
+                        $("#article-search-show").empty();
+                    }
+                })
+            })
+        })
 
-
+    </script>
 
 </head>
 <body>
+<br/>
+<div>
+    <h1>
+        <%--标题--%>
+    </h1>
+
+    <tr>
+        <td>
+
+        </td>
+
+    </tr>
+
+
+    <hr/>
+</div>
+
+
 
 
 </body>

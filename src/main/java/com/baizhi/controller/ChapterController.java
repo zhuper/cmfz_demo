@@ -48,6 +48,14 @@ public class ChapterController {
         return map;
     }
 
+    /***
+     * 更新
+     * @param name
+     * @param id
+     * @param album_id
+     * @param request
+     * @return
+     */
     @RequestMapping("upload")
     public Map<String,Object> upload(MultipartFile name, String id,String album_id, HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();

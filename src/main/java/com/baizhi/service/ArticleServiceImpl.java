@@ -68,7 +68,6 @@ public class ArticleServiceImpl implements ArticleService {
         article.setCreate_date(new Date());
         int i = articleDao.insert(article);
         articleRepository.save(article);
-
         if (i==1){
             //获得指定id上传
             return article.getId();

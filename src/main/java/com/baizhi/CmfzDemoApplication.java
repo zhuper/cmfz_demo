@@ -43,11 +43,6 @@ public class CmfzDemoApplication {
         return new Jedis("192.168.189.158",6379);
     }
 
-/*
-
-    //将shiro交给功能管理
-        public ShiroFilterFactoryBean get
-*/
-
 
 }
+
